@@ -1,6 +1,7 @@
 from enum import Enum
 from colorama import Fore, Back, Style
 import random
+from abc import ABC, abstractmethod
 
 
 
@@ -21,6 +22,7 @@ class DreamTileShape(Enum):
 
 class Tile:
 
+    @abstractmethod
     def __str__(self):
         pass
 
@@ -29,6 +31,7 @@ class Tile:
 class DreamTile(Tile):
 
     def __init__(self, faction, shape, safe=False):
+        super().__init__()
         self.faction = faction
         self.shape = shape
         self.safe = safe
@@ -60,6 +63,33 @@ class DreamTile(Tile):
             toPrint = toPrint + " B "
         elif self.shape == DreamTileShape.TRIANGLE:
             toPrint = toPrint + " C "
+
+        # reset colour
+        toPrint = toPrint + Style.RESET_ALL
+
+        return toPrint
+
+
+
+class TraitorTile(Tile):
+
+    def __init__(self, black=False):
+        super().__init__()
+        self.black = black
+
+    # print a 1x3 tile
+    def __str__(self):
+
+        toPrint = ""
+
+        toPrint = toPrint + Back.YELLOW
+
+        if self.black:
+            toPrint = toPrint + Fore.BLACK
+        else:
+            toPrint = toPrint + Fore.MAGENTA
+
+        toPrint = toPrint + " T "
 
         # reset colour
         toPrint = toPrint + Style.RESET_ALL
@@ -130,6 +160,16 @@ while i < 6:
 newTile = DreamTile(DreamTileFaction.PYRO, DreamTileShape.TRIANGLE)
 i = 0
 while i < 6:
+    mainPile.append(newTile)
+    i = i + 1
+newTile = TraitorTile()
+i = 0
+while i < 9:
+    mainPile.append(newTile)
+    i = i + 1
+newTile = TraitorTile(black=True)
+i = 0
+while i < 3:
     mainPile.append(newTile)
     i = i + 1
 
