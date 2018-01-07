@@ -19,7 +19,14 @@ class DreamTileShape(Enum):
 
 
 
-class DreamTile:
+class Tile:
+
+    def __str__(self):
+        pass
+
+
+
+class DreamTile(Tile):
 
     def __init__(self, faction, shape, safe=False):
         self.faction = faction
