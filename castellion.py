@@ -31,7 +31,6 @@ class Tile:
 class DreamTile(Tile):
 
     def __init__(self, faction, shape, safe=False):
-        super().__init__()
         self.faction = faction
         self.shape = shape
         self.safe = safe
@@ -74,7 +73,6 @@ class DreamTile(Tile):
 class TraitorTile(Tile):
 
     def __init__(self, black=False):
-        super().__init__()
         self.black = black
 
     # print a 1x3 tile
@@ -204,13 +202,9 @@ random.shuffle(mainPile)
 random.shuffle(safePile)
 
 # draw some random tiles
-i = 0
-while i < 5:
-    print(mainPile.pop(), end=" ")
-    i = i + 1
-i = 0
-while i < 5:
-    print(safePile.pop(), end=" ")
-    i = i + 1
+for tile in mainPile:
+    print(tile)
+for tile in safePile:
+    print(tile)
 
 print()
