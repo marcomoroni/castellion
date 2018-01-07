@@ -27,33 +27,37 @@ class Tile:
         self.safe = safe
 
     # print a 1x3 tile
-    def print(self):
+    def __str__(self):
+
+        toPrint = ""
 
         # change text colour
-        print(Fore.BLACK, end="")
+        toPrint = toPrint + Fore.BLACK
         if self.faction == TileFaction.SEER:
-            print(Back.CYAN, end="")
+            toPrint = toPrint + Back.CYAN
         elif self.faction == TileFaction.CHAMELEON:
-            print(Back.GREEN, end="")
+            toPrint = toPrint + Back.GREEN
         elif self.faction == TileFaction.JUGGLER:
-            print(Back.RED, end="")
+            toPrint = toPrint + Back.RED
         elif self.faction == TileFaction.PYRO:
-            print(Back.MAGENTA, end="")
+            toPrint = toPrint + Back.MAGENTA
 
         # safe tiles
         if self.safe:
-            print(Fore.YELLOW, end="")
+            toPrint = toPrint + Fore.YELLOW
 
         # print shape
         if self.shape == TileShape.SQUARE:
-            print(' A ', end="")
+            toPrint = toPrint + " A "
         elif self.shape == TileShape.CIRCLE:
-            print(' B ', end="")
+            toPrint = toPrint + " B "
         elif self.shape == TileShape.TRIANGLE:
-            print(' C ', end="")
+            toPrint = toPrint + " C "
 
         # reset colour
-        print(Style.RESET_ALL, end="")
+        toPrint = toPrint + Style.RESET_ALL
+
+        return toPrint
 
 
 
@@ -155,11 +159,11 @@ random.shuffle(safePile)
 # draw some random tiles
 i = 0
 while i < 5:
-    mainPile.pop().print()
+    print(mainPile.pop(), end=" ")
     i = i + 1
 i = 0
 while i < 5:
-    safePile.pop().print()
+    print(mainPile.pop(), end=" ")
     i = i + 1
 
 print()
