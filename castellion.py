@@ -21,22 +21,28 @@ class TileShape(Enum):
 
 class Tile:
 
-    def __init__(self, faction, shape):
+    def __init__(self, faction, shape, safe=False):
         self.faction = faction
         self.shape = shape
+        self.safe = safe
 
     # print a 1x3 tile
     def print(self):
 
         # change text colour
+        print(Fore.BLACK, end="")
         if self.faction == TileFaction.SEER:
-            print(Back.CYAN + Fore.BLACK, end="")
+            print(Back.CYAN, end="")
         elif self.faction == TileFaction.CHAMELEON:
-            print(Back.GREEN + Fore.BLACK, end="")
+            print(Back.GREEN, end="")
         elif self.faction == TileFaction.JUGGLER:
-            print(Back.RED + Fore.BLACK, end="")
+            print(Back.RED, end="")
         elif self.faction == TileFaction.PYRO:
-            print(Back.MAGENTA + Fore.BLACK, end="")
+            print(Back.MAGENTA, end="")
+
+        # safe tiles
+        if self.safe:
+            print(Fore.YELLOW, end="")
 
         # print shape
         if self.shape == TileShape.SQUARE:
@@ -52,8 +58,9 @@ class Tile:
 
 
 mainPile = []
+safePile = []
 
-# create all tiles
+# create all main tiles
 newTile = Tile(TileFaction.SEER, TileShape.SQUARE)
 i = 0
 while i < 6:
@@ -115,13 +122,44 @@ while i < 6:
     mainPile.append(newTile)
     i = i + 1
 
+# create all safe tiles
+newTile = Tile(TileFaction.SEER, TileShape.SQUARE, safe=True)
+safePile.append(newTile)
+newTile = Tile(TileFaction.SEER, TileShape.CIRCLE, safe=True)
+safePile.append(newTile)
+newTile = Tile(TileFaction.SEER, TileShape.TRIANGLE, safe=True)
+safePile.append(newTile)
+newTile = Tile(TileFaction.CHAMELEON, TileShape.SQUARE, safe=True)
+safePile.append(newTile)
+newTile = Tile(TileFaction.CHAMELEON, TileShape.CIRCLE, safe=True)
+safePile.append(newTile)
+newTile = Tile(TileFaction.CHAMELEON, TileShape.TRIANGLE, safe=True)
+safePile.append(newTile)
+newTile = Tile(TileFaction.JUGGLER, TileShape.SQUARE, safe=True)
+safePile.append(newTile)
+newTile = Tile(TileFaction.JUGGLER, TileShape.CIRCLE, safe=True)
+safePile.append(newTile)
+newTile = Tile(TileFaction.JUGGLER, TileShape.TRIANGLE, safe=True)
+safePile.append(newTile)
+newTile = Tile(TileFaction.PYRO, TileShape.SQUARE, safe=True)
+safePile.append(newTile)
+newTile = Tile(TileFaction.PYRO, TileShape.CIRCLE, safe=True)
+safePile.append(newTile)
+newTile = Tile(TileFaction.PYRO, TileShape.TRIANGLE, safe=True)
+safePile.append(newTile)
+
 # shuffle
 random.shuffle(mainPile)
+random.shuffle(safePile)
 
 # draw some random tiles
 i = 0
-while i < 10:
+while i < 5:
     mainPile.pop().print()
+    i = i + 1
+i = 0
+while i < 5:
+    safePile.pop().print()
     i = i + 1
 
 print()
