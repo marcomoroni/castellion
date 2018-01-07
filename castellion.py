@@ -1,5 +1,6 @@
 from enum import Enum
 from colorama import Fore, Back, Style
+import random
 
 
 
@@ -47,3 +48,80 @@ class Tile:
 
         # reset colour
         print(Style.RESET_ALL, end="")
+
+
+
+mainPile = []
+
+# create all tiles
+newTile = Tile(TileFaction.SEER, TileShape.SQUARE)
+i = 0
+while i < 6:
+    mainPile.append(newTile)
+    i = i + 1
+newTile = Tile(TileFaction.SEER, TileShape.CIRCLE)
+i = 0
+while i < 6:
+    mainPile.append(newTile)
+    i = i + 1
+newTile = Tile(TileFaction.SEER, TileShape.TRIANGLE)
+i = 0
+while i < 6:
+    mainPile.append(newTile)
+    i = i + 1
+newTile = Tile(TileFaction.CHAMELEON, TileShape.SQUARE)
+i = 0
+while i < 6:
+    mainPile.append(newTile)
+    i = i + 1
+newTile = Tile(TileFaction.CHAMELEON, TileShape.CIRCLE)
+i = 0
+while i < 6:
+    mainPile.append(newTile)
+    i = i + 1
+newTile = Tile(TileFaction.CHAMELEON, TileShape.TRIANGLE)
+i = 0
+while i < 6:
+    mainPile.append(newTile)
+    i = i + 1
+newTile = Tile(TileFaction.JUGGLER, TileShape.SQUARE)
+i = 0
+while i < 6:
+    mainPile.append(newTile)
+    i = i + 1
+newTile = Tile(TileFaction.JUGGLER, TileShape.CIRCLE)
+i = 0
+while i < 6:
+    mainPile.append(newTile)
+    i = i + 1
+newTile = Tile(TileFaction.JUGGLER, TileShape.TRIANGLE)
+i = 0
+while i < 6:
+    mainPile.append(newTile)
+    i = i + 1
+newTile = Tile(TileFaction.PYRO, TileShape.SQUARE)
+i = 0
+while i < 6:
+    mainPile.append(newTile)
+    i = i + 1
+newTile = Tile(TileFaction.PYRO, TileShape.CIRCLE)
+i = 0
+while i < 6:
+    mainPile.append(newTile)
+    i = i + 1
+newTile = Tile(TileFaction.PYRO, TileShape.TRIANGLE)
+i = 0
+while i < 6:
+    mainPile.append(newTile)
+    i = i + 1
+
+# shuffle
+random.shuffle(mainPile)
+
+# draw some random tiles
+i = 0
+while i < 10:
+    mainPile.pop().print()
+    i = i + 1
+
+print()
